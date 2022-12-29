@@ -70,7 +70,7 @@ return [
             'port' => env('DB_PORT', '5001'),
             'database' => env('DB_DATABASE', 'restaurantDb'),
             'username' => env('DB_USERNAME', 'postgres'),
-            'password' => env('DB_PASSWORD', ''),
+            'password' => env('DB_PASSWORD', 'Denisbot1337'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,

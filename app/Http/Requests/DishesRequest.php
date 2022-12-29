@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class DishesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,8 +24,11 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','min:3'],
-            'image' => ['required','image', 'mimes:jpeg,bmp,png']
+            'name' => ['required', 'max:40'],
+            'price' => ['required'],
+            'caloric' => ['required'],
+            'category_id' => ['required'],
+            'image' => ['required', 'image', 'mimes:jpeg,bmp,png'],
         ];
     }
 }

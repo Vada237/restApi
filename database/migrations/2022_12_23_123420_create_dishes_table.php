@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price');
             $table->integer('caloric');
-            $table->foreignId('category_id');
+            $table->integer('category_id');
             $table->string('image');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

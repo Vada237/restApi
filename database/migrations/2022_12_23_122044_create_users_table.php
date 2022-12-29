@@ -16,11 +16,17 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('login');
             $table->string('password');
-            $table->unsignedInteger('pin_code');
-            $table->foreignId('role_id');
+            $table->string('pin_code')->unique();
+            $table->rememberToken();
+            $table->integer('role_id');
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('roles');
         });
+
+
     }
 
     /**

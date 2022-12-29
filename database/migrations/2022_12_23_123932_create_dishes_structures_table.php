@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dishes_structure', function (Blueprint $table) {
+        Schema::create('dishes_structures', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('dishes_id');
+            $table->string('product_name');
+            $table->integer('dishes_id');
+            $table->foreign('dishes_id')->references('id')->on('dishes');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dishes_structure');
+        Schema::dropIfExists('dishes_structures');
     }
 };

@@ -9,9 +9,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders_dishes', function (Blueprint $table) {
-            $table->foreignId('order_id');
-            $table->foreignId('dishes_id');
+
+            $table->id();
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('dishes_id');
+            $table->integer('count');
+            $table->decimal('sum');
             $table->timestamps();
+
+            $table->foreign('dishes_id')->references('id')->on('dishes');
+            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 
