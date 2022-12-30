@@ -13,25 +13,34 @@ use function MongoDB\BSON\toJSON;
 
 class CategoryController extends Controller
 {
+
     /**
-     * @SWG\Get(
-     *     path="/",
-     *     summary="Возвращает список категорий",
-     *     tags={"categories"},
-     *     @SWG\Response(
-     *         response=200,
-     *         description="успешная операция",
-     *         @SWG\Schema(
-     *             type="array",
-     *             @SWG\Items(ref="#/definitions/Category")
-     *         ),
+     * @OA\Get(
+     *     path="/api/categories",
+     *     operationId="categoriesAll",
+     *     tags={"Categories"},
+     *     summary="Выводит категории блюд",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Категории выведены"
      *     ),
-     *     @SWG\Response(
-     *         response="403",
-     *         description="Доступ запрещен",
+     *     @OA\Response(
+     *     response="404",
+     *     description="Категории не найдены"
      *     ),
-     * )
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+
     public function index()
     {
         if (auth()->user()->role_id == 1) {
@@ -41,34 +50,22 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(CategoryRequest $request)
-    {
-
-    }
-
-    /**
-     * @SWG\Post(
-     *     path="/",
+     * @OA\Post(
+     *     path="/api/categories",
+     *     operationId="categoriesCreate",
+     *     tags={"Categories"},
      *     summary="Создает категорию",
-     *     tags={"categories"},
-     *     @SWG\Response(
-     *         response=200,
-     *         description="Категория создана",
-     *         @SWG\Schema(
-     *             type="category",
-     *             @SWG\Items(ref="#/definitions/Category")
-     *         ),
+     *     @OA\Response(
+     *      response="200",
+     *      description="Категория создана"
      *     ),
-     *     @SWG\Response(
-     *         response="403",
-     *         description="Доступ запрещен",
-     *     ),
-     * )
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
+
     public function store(CategoryRequest $request)
     {
         if (auth()->user()->role_id == 1) {
@@ -88,24 +85,26 @@ class CategoryController extends Controller
         }
 
     /**
-     * @SWG\Get(
-     *     path="/{id}",
-     *     summary="Возвращает выбранную категорию",
-     *     tags={"categories"},
-     *     @SWG\Response(
-     *         response=200,
-     *         description="выведена категория",
-     *         @SWG\Schema(
-     *             type="array",
-     *             @SWG\Items(ref="#/definitions/Category")
-     *         ),
+     * @OA\Get(
+     *     path="/api/categories/{category_id}",
+     *     operationId="categoryGetById",
+     *     tags={"Categories"},
+     *     summary="Вывод категории по id",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Продукт выведен"
      *     ),
-     *     @SWG\Response(
-     *         response="403",
-     *         description="Доступ запрещен",
+     *     @OA\Response(
+     *      response="404",
+     *      description="Продукт не найден"
      *     ),
-     * )
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
+
     public function show(Category $category)
     {
         if (auth()->user()->role_id == 1) {
@@ -113,18 +112,6 @@ class CategoryController extends Controller
         }
         return response('Недостаточно прав', 403);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
 
     /**
      * Update the specified resource in storage.
@@ -135,24 +122,30 @@ class CategoryController extends Controller
      */
 
     /**
-     * @SWG\Put(
-     *     path="/{category}",
-     *     summary="Обновляет категорию по id",
-     *     tags={"categories"},
-     *     @SWG\Response(
-     *         response=200,
-     *         description="Категория обновлена",
-     *         @SWG\Schema(
-     *             type="array",
-     *             @SWG\Items(ref="#/definitions/Category")
-     *         ),
+     * @OA\Put(
+     *     path="/api/categories/{category_id}",
+     *     operationId="categoriesUpdate",
+     *     tags={"Categories"},
+     *     summary="Обновляет категорию",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Категория обновлена"
      *     ),
-     *     @SWG\Response(
-     *         response="403",
-     *         description="Доступ запрещен",
-     *     ),
-     * )
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+
 
     public function update(Request $request, Category $category)
     {
@@ -177,24 +170,22 @@ class CategoryController extends Controller
         return Response('Недостаточно прав', 403);
     }
 
+
     /**
-     * @SWG\Get(
-     *     path="/{id}",
-     *     summary="Удаление категории по id",
-     *     tags={"categories"},
-     *     @SWG\Response(
-     *         response=200,
-     *         description="Категория удалена",
-     *         @SWG\Schema(
-     *             type="array",
-     *             @SWG\Items(ref="#/definitions/Category")
-     *         ),
+     * @OA\Delete(
+     *     path="/api/categories/{category_id}",
+     *     operationId="categoriesDelete",
+     *     tags={"Categories"},
+     *     summary="Удаляет категорию",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Категория удалена"
      *     ),
-     *     @SWG\Response(
-     *         response="403",
-     *         description="Доступ запрещен",
-     *     ),
-     * )
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
 
     public function destroy(Category $category)

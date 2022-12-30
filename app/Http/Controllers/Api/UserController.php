@@ -12,10 +12,22 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     *
+     * @OA\Get(
+     *     path="/api/users",
+     *     operationId="usersAll",
+     *     tags={"Users"},
+     *     summary="Вывод всех пользователей",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Пользователи выведены"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
+
     public function index()
     {
         if (auth()->user()->role_id == 1) {
@@ -25,14 +37,21 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *     path="/api/users",
+     *     operationId="userCreate",
+     *     tags={"Users"},
+     *     summary="Создание пользователя",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Пользователь создан"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -40,6 +59,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
+
     public function store(Request $request)
     {
         if (auth()->user()->role_id == 1) {
@@ -67,27 +87,23 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\user  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(user $user)
-    {
-        //
-    }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\user  $user
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *     path="/api/users/{user_id}",
+     *     operationId="userUpdate",
+     *     tags={"Users"},
+     *     summary="Изменение пользователя по id",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Пользователь изменен"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
-    public function edit(user $user)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -96,6 +112,7 @@ class UserController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
+
     public function update(userRequest $request, user $user)
     {
         if (auth()->user()->role_id == 1) {
@@ -122,11 +139,29 @@ class UserController extends Controller
     }
 
     /**
+     * @OA\Delete(
+     *     path="/api/users/{user_id}",
+     *     operationId="userDelete",
+     *     tags={"Users"},
+     *     summary="Удаление пользователя по id",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Пользователь удален"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Request $request)
     {
         if (auth()->user()->role_id == 1) {

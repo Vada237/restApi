@@ -1,0 +1,471 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "restaurantAPI",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Осуществляет вход пользователя по логину\\паролю или пин-коду",
+                "operationId": "login",
+                "responses": {
+                    "200": {
+                        "description": "Произведен вход в систему"
+                    },
+                    "400": {
+                        "description": "Неверный логин\\пароль или пин-код"
+                    }
+                }
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Выводит категории блюд",
+                "operationId": "categoriesAll",
+                "responses": {
+                    "200": {
+                        "description": "Категории выведены"
+                    },
+                    "404": {
+                        "description": "Категории не найдены"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Создает категорию",
+                "operationId": "categoriesCreate",
+                "responses": {
+                    "200": {
+                        "description": "Категория создана"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/categories/{category_id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Вывод категории по id",
+                "operationId": "categoryGetById",
+                "responses": {
+                    "200": {
+                        "description": "Продукт выведен"
+                    },
+                    "404": {
+                        "description": "Продукт не найден"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Обновляет категорию",
+                "operationId": "categoriesUpdate",
+                "responses": {
+                    "200": {
+                        "description": "Категория обновлена"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Удаляет категорию",
+                "operationId": "categoriesDelete",
+                "responses": {
+                    "200": {
+                        "description": "Категория удалена"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/dishes": {
+            "get": {
+                "tags": [
+                    "Dishes"
+                ],
+                "summary": "Вывод всех блюд",
+                "operationId": "dishesGetAll",
+                "responses": {
+                    "200": {
+                        "description": "Блюда выведены"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dishes"
+                ],
+                "summary": "Создает блюдо",
+                "operationId": "dishesCreate",
+                "responses": {
+                    "200": {
+                        "description": "Блюдо создано"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/dishes/{dish_id}": {
+            "get": {
+                "tags": [
+                    "Dishes"
+                ],
+                "summary": "Вывод блюда по id",
+                "operationId": "dishesGetById",
+                "responses": {
+                    "200": {
+                        "description": "Блюдо выведено"
+                    },
+                    "404": {
+                        "description": "Блюдо не найдено"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/dishes/{dishes_id}": {
+            "put": {
+                "tags": [
+                    "Dishes"
+                ],
+                "summary": "Обновляет блюдо по id",
+                "operationId": "dishesUpdate",
+                "responses": {
+                    "200": {
+                        "description": "Блюдо обновлено"
+                    },
+                    "404": {
+                        "description": "Блюдо не найдено"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Dishes"
+                ],
+                "summary": "Удаляет блюдо по id",
+                "operationId": "dishesDelete",
+                "responses": {
+                    "200": {
+                        "description": "Блюдо удалено"
+                    },
+                    "404": {
+                        "description": "Блюдо не найдено"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/dishes_structures": {
+            "get": {
+                "tags": [
+                    "DishesStructures"
+                ],
+                "summary": "Выводит все продукты, входящие в состав блюда",
+                "operationId": "dishes_structuresAll",
+                "responses": {
+                    "200": {
+                        "description": "Продукты выведены"
+                    },
+                    "404": {
+                        "description": "Продукты не найдены"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "DishesStructures"
+                ],
+                "summary": "Создает продукт",
+                "operationId": "dishes_structuresCreate",
+                "responses": {
+                    "200": {
+                        "description": "Продукт создан"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/dishes_structures/{id}": {
+            "get": {
+                "tags": [
+                    "DishesStructures"
+                ],
+                "summary": "Выводит продукт по Id",
+                "operationId": "dishes_structuresById",
+                "responses": {
+                    "200": {
+                        "description": "Продукт выведен"
+                    },
+                    "404": {
+                        "description": "Продукт не найден"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "DishesStructures"
+                ],
+                "summary": "Обновляет продукт",
+                "operationId": "dishes_structuresUpdate",
+                "responses": {
+                    "200": {
+                        "description": "Продукт обновлен"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "DishesStructures"
+                ],
+                "summary": "Удаляет продукт по id",
+                "operationId": "dishes_structuresDelete",
+                "responses": {
+                    "200": {
+                        "description": "Продукт удален"
+                    },
+                    "404": {
+                        "description": "Продукт не найден"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Вывод всех заказов",
+                "operationId": "orderAll",
+                "responses": {
+                    "200": {
+                        "description": "Заказы выведены"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Создает заказ",
+                "operationId": "orderCreate",
+                "responses": {
+                    "200": {
+                        "description": "Заказ создан"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/orders/{order_id}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Вывод заказа по id",
+                "operationId": "orderGetById",
+                "responses": {
+                    "200": {
+                        "description": "Заказ выведен"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/orders/close/{order_id}": {
+            "put": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Закрывает заказ",
+                "operationId": "orderUpdate",
+                "responses": {
+                    "200": {
+                        "description": "Заказ закрыт"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/order_dishes": {
+            "get": {
+                "tags": [
+                    "OrderDishes"
+                ],
+                "summary": "Вывод всех блюд в заказе",
+                "operationId": "order_dishesGetAll",
+                "responses": {
+                    "200": {
+                        "description": "Блюда выведены"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "OrderDishes"
+                ],
+                "summary": "Добавляет блюдо в заказ",
+                "operationId": "order_dishesCreate",
+                "responses": {
+                    "200": {
+                        "description": "Блюдо добавлено"
+                    },
+                    "403": {
+                        "description": "Пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/dishes/{order_id}/{dishes_id}": {
+            "delete": {
+                "tags": [
+                    "OrderDishes"
+                ],
+                "summary": "Удаляет блюдо из заказа",
+                "operationId": "order_dishesDelete",
+                "responses": {
+                    "200": {
+                        "description": "Блюдо удалено"
+                    },
+                    "404": {
+                        "description": "Блюдо или заказ не найден"
+                    },
+                    "403": {
+                        "description": "Пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Вывод всех пользователей",
+                "operationId": "usersAll",
+                "responses": {
+                    "200": {
+                        "description": "Пользователи выведены"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Создание пользователя",
+                "operationId": "userCreate",
+                "responses": {
+                    "200": {
+                        "description": "Пользователь создан"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        },
+        "/api/users/{user_id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Изменение пользователя по id",
+                "operationId": "userUpdate",
+                "responses": {
+                    "200": {
+                        "description": "Пользователь изменен"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Удаление пользователя по id",
+                "operationId": "userDelete",
+                "responses": {
+                    "200": {
+                        "description": "Пользователь удален"
+                    },
+                    "403": {
+                        "description": "Нет доступа или пользователь не авторизован"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -11,11 +11,24 @@ use Illuminate\Support\Facades\Storage;
 
 class DishesController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     *
+     * @OA\Get(
+     *     path="/api/dishes",
+     *     operationId="dishesGetAll",
+     *     tags={"Dishes"},
+     *     summary="Вывод всех блюд",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Блюда выведены"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
+
     public function index()
     {
         if (auth()->user()->role_id == 1) {
@@ -25,14 +38,21 @@ class DishesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *     path="/api/dishes",
+     *     operationId="dishesCreate",
+     *     tags={"Dishes"},
+     *     summary="Создает блюдо",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Блюдо создано"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -40,6 +60,7 @@ class DishesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(DishesRequest $request)
     {
         if (auth()->user()->role_id == 1) {
@@ -65,6 +86,27 @@ class DishesController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/api/dishes/{dish_id}",
+     *     operationId="dishesGetById",
+     *     tags={"Dishes"},
+     *     summary="Вывод блюда по id",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Блюдо выведено"
+     *     ),
+     *      @OA\Response(
+     *      response="404",
+     *      description="Блюдо не найдено"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Dishes $dish
@@ -77,16 +119,7 @@ class DishesController extends Controller
         }
         return response('Недостаточно прав', 403);
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\dishes  $dish
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(dishes $dishes)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -95,6 +128,36 @@ class DishesController extends Controller
      * @param  \App\Models\Dishes  $dish
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @OA\Put(
+     *     path="/api/dishes/{dishes_id}",
+     *     operationId="dishesUpdate",
+     *     tags={"Dishes"},
+     *     summary="Обновляет блюдо по id",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Блюдо обновлено"
+     *     ),
+     *     @OA\Response(
+     *      response="404",
+     *      description="Блюдо не найдено"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Dishes  $dish
+     * @return \Illuminate\Http\Response
+     */
+
     public function update(DishesRequest $request, Dishes $dish)
     {
         if (auth()->user()->role_id == 1) {
@@ -120,6 +183,28 @@ class DishesController extends Controller
         }
         return response('Недостаточно прав',403);
     }
+
+
+    /**
+     * @OA\Delete(
+     *     path="/api/dishes/{dishes_id}",
+     *     operationId="dishesDelete",
+     *     tags={"Dishes"},
+     *     summary="Удаляет блюдо по id",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Блюдо удалено"
+     *     ),
+     *     @OA\Response(
+     *      response="404",
+     *      description="Блюдо не найдено"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
 
     /**
      * Remove the specified resource from storage.

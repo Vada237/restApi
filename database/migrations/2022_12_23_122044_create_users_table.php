@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('login');
             $table->string('password');
-            $table->string('pin_code')->unique();
-            $table->rememberToken();
+            $table->string('pin_code')->unique();            
             $table->integer('role_id');
             $table->timestamps();
 

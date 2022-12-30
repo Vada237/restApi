@@ -12,6 +12,27 @@ use Illuminate\Support\Facades\Auth;
 class Dishes_StructuresController extends Controller
 {
     /**
+     * @OA\Get(
+     *     path="/api/dishes_structures",
+     *     operationId="dishes_structuresAll",
+     *     tags={"DishesStructures"},
+     *     summary="Выводит все продукты, входящие в состав блюда",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Продукты выведены"
+     *     ),
+     *     @OA\Response(
+     *      response="404",
+     *      description="Продукты не найдены"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     *
+     *
+     *
      * Display a listing of the resource.
      *
      *
@@ -24,14 +45,28 @@ class Dishes_StructuresController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/dishes_structures",
+     *     operationId="dishes_structuresCreate",
+     *     tags={"DishesStructures"},
+     *     summary="Создает продукт",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Продукт создан"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
 
     /**
      * Store a newly created resource in storage.
@@ -62,21 +97,39 @@ class Dishes_StructuresController extends Controller
      * @param  \App\Models\dishes_structures  $dishes_structure
      * @return Dishes_StructureRecource
      */
+
+    /**
+     * @OA\Get(
+     *     path="/api/dishes_structures/{id}",
+     *     operationId="dishes_structuresById",
+     *     tags={"DishesStructures"},
+     *     summary="Выводит продукт по Id",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Продукт выведен"
+     *     ),
+     *     @OA\Response(
+     *      response="404",
+     *      description="Продукт не найден"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\dishes_structures  $dishes_structure
+     * @return Dishes_StructureRecource
+     */
+
     public function show(dishes_structures $dishes_structure)
     {   if (auth()->user()->role_id == 1) {
             return new Dishes_StructureRecource($dishes_structure);
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\dishes_structures  $dishes_structure
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(dishes_structures $dishes_structure)
-    {
-        //
     }
 
     /**
@@ -86,6 +139,32 @@ class Dishes_StructuresController extends Controller
      * @param  \App\Models\dishes_structures  $dishes_structure
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @OA\Put(
+     *     path="/api/dishes_structures/{id}",
+     *     operationId="dishes_structuresUpdate",
+     *     tags={"DishesStructures"},
+     *     summary="Обновляет продукт",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Продукт обновлен"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\dishes_structures  $dishes_structure
+     * @return \Illuminate\Http\Response
+     */
+
     public function update(Request $request, dishes_structures $dishes_structure)
     {
         if (auth()->user()->role_id == 1) {
@@ -94,6 +173,34 @@ class Dishes_StructuresController extends Controller
         }
         return response('Недостаточно прав', 403);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\dishes_structures  $dishes_structure
+     * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\Delete(
+     *     path="/api/dishes_structures/{id}",
+     *     operationId="dishes_structuresDelete",
+     *     tags={"DishesStructures"},
+     *     summary="Удаляет продукт по id",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Продукт удален"
+     *     ),
+     *     @OA\Response(
+     *      response="404",
+     *      description="Продукт не найден"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
 
     /**
      * Remove the specified resource from storage.

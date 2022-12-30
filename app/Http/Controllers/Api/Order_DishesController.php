@@ -11,11 +11,30 @@ use Illuminate\Http\Request;
 
 class Order_DishesController extends Controller
 {
+
+    /**
+     * @OA\Get(
+     *     path="/api/order_dishes",
+     *     operationId="order_dishesGetAll",
+     *     tags={"OrderDishes"},
+     *     summary="Вывод всех блюд в заказе",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Блюда выведены"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Нет доступа или пользователь не авторизован"
+     *     )
+     *)
+     */
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
     public function index()
     {
         $orderDishes = orders_dishes::with(['dishes'])->get();
@@ -23,14 +42,21 @@ class Order_DishesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *     path="/api/order_dishes",
+     *     operationId="order_dishesCreate",
+     *     tags={"OrderDishes"},
+     *     summary="Добавляет блюдо в заказ",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Блюдо добавлено"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Пользователь не авторизован"
+     *     )
+     *)
      */
-    public function create()
-    {
-
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -38,6 +64,7 @@ class Order_DishesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $order = Orders::where('id', $request->order_id)->first();
@@ -62,37 +89,25 @@ class Order_DishesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\orders_dishes  $orders_dishes
-     * @return \Illuminate\Http\Response
+     * @OA\Delete(
+     *     path="/api/dishes/{order_id}/{dishes_id}",
+     *     operationId="order_dishesDelete",
+     *     tags={"OrderDishes"},
+     *     summary="Удаляет блюдо из заказа",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Блюдо удалено"
+     *     ),
+     *     @OA\Response(
+     *      response="404",
+     *      description="Блюдо или заказ не найден"
+     *     ),
+     *      @OA\Response(
+     *      response="403",
+     *      description="Пользователь не авторизован"
+     *     )
+     *)
      */
-    public function show(orders_dishes $orders_dishes)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\orders_dishes  $orders_dishes
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(orders_dishes $orders_dishes)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\orders_dishes  $orders_dishes
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, orders_dishes $orders_dishes)
-    {
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -100,6 +115,7 @@ class Order_DishesController extends Controller
      * @param  \App\Models\orders_dishes  $orders_dishes
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(orders_dishes $orders_dishes)
     {
         $orders_dishes->delete();
