@@ -12,7 +12,7 @@ class orders extends Model
     protected $fillable = ['status'];
 
     public function orders_dishes() {
-        return $this->HasMany(orders_dishes::class, 'order_id','id');
+        return $this->hasMany(orders_dishes::class, 'order_id','id');
     }
 
 
