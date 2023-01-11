@@ -45,13 +45,6 @@ class Dishes_StructuresController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
      * @OA\Post(
      *     path="/api/dishes_structures",
      *     operationId="dishes_structuresCreate",
@@ -91,12 +84,6 @@ class Dishes_StructuresController extends Controller
         } else Response('Недостаточно прав', 403);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\dishes_structures  $dishes_structure
-     * @return Dishes_StructureRecource
-     */
 
     /**
      * @OA\Get(
@@ -119,12 +106,6 @@ class Dishes_StructuresController extends Controller
      *)
      */
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\dishes_structures  $dishes_structure
-     * @return Dishes_StructureRecource
-     */
 
     public function show(dishes_structures $dishes_structure)
     {   if (auth()->user()->role_id == 1) {
@@ -132,13 +113,7 @@ class Dishes_StructuresController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\dishes_structures  $dishes_structure
-     * @return \Illuminate\Http\Response
-     */
+
 
     /**
      * @OA\Put(
@@ -175,13 +150,6 @@ class Dishes_StructuresController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\dishes_structures  $dishes_structure
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
      * @OA\Delete(
      *     path="/api/dishes_structures/{id}",
      *     operationId="dishes_structuresDelete",
@@ -202,12 +170,7 @@ class Dishes_StructuresController extends Controller
      *)
      */
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\dishes_structures  $dishes_structure
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(dishes_structures $dishes_structure)
     {
         if (auth()->user()->role_id == 1) {

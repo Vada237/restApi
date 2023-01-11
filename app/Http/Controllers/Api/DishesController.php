@@ -54,13 +54,6 @@ class DishesController extends Controller
      *)
      */
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
     public function store(DishesRequest $request)
     {
         if (auth()->user()->role_id == 1) {
@@ -106,12 +99,6 @@ class DishesController extends Controller
      *)
      */
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Dishes $dish
-     * @return DishesResource
-     */
     public function show(Dishes $dish)
     {
         if (auth()->user()->role_id == 1) {
@@ -120,14 +107,6 @@ class DishesController extends Controller
         return response('Недостаточно прав', 403);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dishes  $dish
-     * @return \Illuminate\Http\Response
-     */
 
     /**
      * @OA\Put(
@@ -150,13 +129,6 @@ class DishesController extends Controller
      *)
      */
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dishes  $dish
-     * @return \Illuminate\Http\Response
-     */
 
     public function update(DishesRequest $request, Dishes $dish)
     {
@@ -206,12 +178,6 @@ class DishesController extends Controller
      *)
      */
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Dishes  $dish
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Dishes $dish)
     {
         if (auth()->user()->role_id == 1) {

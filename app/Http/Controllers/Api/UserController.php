@@ -53,13 +53,6 @@ class UserController extends Controller
      *)
      */
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-
     public function store(Request $request)
     {
         if (auth()->user()->role_id == 1) {
@@ -105,14 +98,6 @@ class UserController extends Controller
      *)
      */
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\user  $user
-     * @return \Illuminate\Http\Response
-     */
-
     public function update(userRequest $request, user $user)
     {
         if (auth()->user()->role_id == 1) {
@@ -155,12 +140,6 @@ class UserController extends Controller
      *)
      */
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\user  $user
-     * @return \Illuminate\Http\Response
-     */
 
     public function destroy(Request $request)
     {

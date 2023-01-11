@@ -23,24 +23,6 @@
             }
         },
         "/api/categories": {
-            "get": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Выводит категории блюд",
-                "operationId": "categoriesAll",
-                "responses": {
-                    "200": {
-                        "description": "Категории выведены"
-                    },
-                    "404": {
-                        "description": "Категории не найдены"
-                    },
-                    "403": {
-                        "description": "Нет доступа или пользователь не авторизован"
-                    }
-                }
-            },
             "post": {
                 "tags": [
                     "Categories"
@@ -215,21 +197,6 @@
                         "description": "Нет доступа или пользователь не авторизован"
                     }
                 }
-            },
-            "post": {
-                "tags": [
-                    "DishesStructures"
-                ],
-                "summary": "Создает продукт",
-                "operationId": "dishes_structuresCreate",
-                "responses": {
-                    "200": {
-                        "description": "Продукт создан"
-                    },
-                    "403": {
-                        "description": "Нет доступа или пользователь не авторизован"
-                    }
-                }
             }
         },
         "/api/dishes_structures/{id}": {
@@ -245,21 +212,6 @@
                     },
                     "404": {
                         "description": "Продукт не найден"
-                    },
-                    "403": {
-                        "description": "Нет доступа или пользователь не авторизован"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "DishesStructures"
-                ],
-                "summary": "Обновляет продукт",
-                "operationId": "dishes_structuresUpdate",
-                "responses": {
-                    "200": {
-                        "description": "Продукт обновлен"
                     },
                     "403": {
                         "description": "Нет доступа или пользователь не авторизован"

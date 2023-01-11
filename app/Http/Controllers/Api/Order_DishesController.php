@@ -29,12 +29,6 @@ class Order_DishesController extends Controller
      *)
      */
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-
     public function index()
     {
         $orderDishes = orders_dishes::with(['dishes'])->get();
@@ -58,12 +52,6 @@ class Order_DishesController extends Controller
      *)
      */
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
     public function store(Request $request)
     {
@@ -109,12 +97,6 @@ class Order_DishesController extends Controller
      *)
      */
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\orders_dishes  $orders_dishes
-     * @return \Illuminate\Http\Response
-     */
 
     public function destroy(orders_dishes $orders_dishes)
     {

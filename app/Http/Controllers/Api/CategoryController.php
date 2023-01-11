@@ -114,14 +114,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
      * @OA\Put(
      *     path="/api/categories/{category_id}",
      *     operationId="categoriesUpdate",
@@ -136,14 +128,6 @@ class CategoryController extends Controller
      *      description="Нет доступа или пользователь не авторизован"
      *     )
      *)
-     */
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
 
 

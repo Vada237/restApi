@@ -29,11 +29,6 @@ class OrderController extends Controller
      *)
      */
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
 
     public function index()
     {
@@ -61,12 +56,6 @@ class OrderController extends Controller
      *)
      */
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function store()
     {
@@ -96,13 +85,6 @@ class OrderController extends Controller
      *)
      */
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\orders  $orders
-     * @return \Illuminate\Http\JsonResponse
-     */
-
     public function show(orders $order)
     {   if (auth()->user()->role_id == 1) {
             return (new orderResource($order->loadMissing(['orders_dishes'])))->response();
@@ -126,13 +108,6 @@ class OrderController extends Controller
      *)
      */
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\orders  $orders
-     * @return \Illuminate\Http\Response
-     */
 
     public function update(Request $request)
     {
